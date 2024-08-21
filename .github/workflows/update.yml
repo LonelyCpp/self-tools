@@ -1,4 +1,4 @@
-name: fetch and update influencer stats
+name: update investments
 
 on:
   workflow_dispatch:
