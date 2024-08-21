@@ -26,19 +26,25 @@ async function main() {
     },
   });
 
+  if (res.status !== 200) {
+    throw new Error("Invalid sc response");
+  }
+
   const { data } = await res.json();
 
   const date = new Date().toLocaleString("en-In", { dateStyle: "long" });
   const mfValue = data.mutualFund.returns.networth;
   const scValue = data.smallcase.IN.returns.networth;
   const totalValue = data.total.returns.networth;
+  const totalPnL = data.total.returns.totalPnl;
+  const totalInv = data.total.returns.investment;
 
   await gSheets.spreadsheets.values.append({
     spreadsheetId: config.sheetId,
     range: "Sheet1!A1",
     valueInputOption: "USER_ENTERED",
     resource: {
-      values: [[date, mfValue, scValue, totalValue]],
+      values: [[date, mfValue, scValue, totalValue, totalInv, totalPnL]],
     },
   });
 
