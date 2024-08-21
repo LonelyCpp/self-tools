@@ -1,0 +1,29 @@
+name: fetch and update influencer stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "30 20 * * *"
+
+jobs:
+  build_android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install modules
+        run: yarn
+
+      - name: setup google service account
+        run: node setupGoogleService.js
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
+
+      - name: update stats
+        run: node updateInv.js
+        env:
+          XC: ${{ secrets.XC }}
+          SAM: ${{ secrets.SAM }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}

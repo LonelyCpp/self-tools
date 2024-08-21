@@ -1,9 +1,9 @@
 const { google } = require("googleapis");
 
 const config = {
-  xc: process.env.xc,
-  sam: process.env.sam,
-  sheetId: process.env.sheetID,
+  xc: process.env.XC,
+  sam: process.env.SAM,
+  sheetId: process.env.SHEETID,
 };
 
 async function main() {
