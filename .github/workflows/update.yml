@@ -7,11 +7,15 @@ on:
     - cron: "30 20 * * *"
 
 jobs:
-  build_android:
+  update_investments_sheet:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: "package.json"
 
       - name: install modules
         run: yarn
