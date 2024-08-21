@@ -33,19 +33,16 @@ async function main() {
   const scValue = data.smallcase.IN.returns.networth;
   const totalValue = data.total.returns.networth;
 
-  try {
-    await gSheets.spreadsheets.values.append({
-      spreadsheetId: config.sheetId,
-      range: "Sheet1!A1",
-      valueInputOption: "USER_ENTERED",
-      resource: {
-        values: [[date, mfValue, scValue, totalValue]],
-      },
-    });
-    console.log("Data added successfully:");
-  } catch (error) {
-    console.error("Error appending data:", error);
-  }
+  await gSheets.spreadsheets.values.append({
+    spreadsheetId: config.sheetId,
+    range: "Sheet1!A1",
+    valueInputOption: "USER_ENTERED",
+    resource: {
+      values: [[date, mfValue, scValue, totalValue]],
+    },
+  });
+
+  console.log("Data added successfully:");
 }
 
 main().catch((err) => {
