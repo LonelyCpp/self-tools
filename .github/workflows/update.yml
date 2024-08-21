@@ -26,4 +26,4 @@ jobs:
         env:
           XC: ${{ secrets.XC }}
           SAM: ${{ secrets.SAM }}
-          SHEET_ID: ${{ secrets.SHEET_ID }}
+          SHEETID: ${{ secrets.SHEETID }}
